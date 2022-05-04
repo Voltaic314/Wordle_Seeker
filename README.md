@@ -21,6 +21,8 @@ However if you know that some letters go together, for example let's say the tar
 
 One final note: unfortunately this code doesn't handle duplicate letters whille. So let's say for example the target word is Trees. You know there is an "RE" and you know there's also another "E" somewhere in the word. If you try to type in RE in the first line and E in the second line, it will basically ignore the second line because it's already looking for an E in the word. The code doesn't distinguish between single and duplicate letters unless you specifically type "EE" but in this case the word could be "There" and you would miss out on that suggestion. 
 
+Also, if you enter 5 letters or less and it tells you to input letters again for the first time, it means your search did not come up with any results. so therefore you'll need to try to search again with different letters. (or it may just mean that the combination of letters you entered does equal a word but it's not in the dictionary file - this is rare. More likely you may have entered more than 5 characters). 
+
 #######################################################################
 
 If you can think of any ways to improve this code, feel free to modify it or reach out to me with suggestions. I am only a beginner programmer right now so any suggestions are appreciated. Thanks and have fun! 
