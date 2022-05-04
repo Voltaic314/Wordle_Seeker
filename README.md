@@ -13,6 +13,8 @@ HOW TO USE THIS CODE:
 
 First make sure your device has some way to run python. I would recommend watching a tutorial on run a python script. This varies based on operating system so best just to look up a tutorial of how to run python on your OS, it's pretty easy to do all things considered. Once python is installed just execute the program in your command line and it should start up. 
 
+You will also need the dictionary file I have provided otherwise the code will not work. So just download that dictionary txt file and put it in the same directory as the python script. (Wordleseeker.py file)
+
 When the program starts it will ask you to input a "letter you know" and it will ask this up to 5 times. The way this works is if you only know specific single letters but don't know the combination or order they go in, just type each letter in each line. leaving lines blank for the letters you don't know. For example, if wordle's target word is ghost, but I only know there is an H, O, and S in the word, I would just type H in the first line, O in the second line, and S in the third. It does not matter which order you type the lines for single lines. 
 
 However if you know that some letters go together, for example let's say the target word is GHOST but yet I only know that there's a G somewhere and I know "OS" are in the word, I could type G in the first input line, hit enter, then type OS in the second line, then enter enter enter. Then it should provide me with a list of all words that contain the letter G and "OS" 
