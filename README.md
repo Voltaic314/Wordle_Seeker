@@ -23,6 +23,10 @@ One final note: unfortunately this code doesn't handle duplicate letters whille.
 
 Also, if you enter 5 letters or less and it tells you to input letters again for the first time, it means your search did not come up with any results. so therefore you'll need to try to search again with different letters. (or it may just mean that the combination of letters you entered does equal a word but it's not in the dictionary file - this is rare. More likely you may have entered more than 5 characters). 
 
+After 5 input prompts you will see a warning prompt and then 8 input prompts for letters that are not in the word. It is recommended that you use letters that are very common that you know are not in the word, but you can play around with this as much as you need. This should eliminate A LOT of possible words, use this to your advantage. This feature can also be helpful where you may only know 1 or 2 letters but have a lot of letters that you know aren't in the word. 
+
+***** REMEMBER: YOU CAN NOT LEAVE ANY OF THESE BAD LETTER INPUTS BLANK, YOU HAVE TO AT LEAST TYPE A SPACE, THEN HIT ENTER, OTHERWISE IT WILL NOT WORK. *****
+
 #######################################################################
 
 If you can think of any ways to improve this code, feel free to modify it or reach out to me with suggestions. I am only a beginner programmer right now so any suggestions are appreciated. Thanks and have fun! 
