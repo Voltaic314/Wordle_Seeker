@@ -2,7 +2,10 @@
 Projects made by Logan Maupin aka Voltaic
 
 
-rare but possible instances where the target word you are meant to find may not even appear in the program's suggestions or alternatively the program might suggest a word that the other game / app might say isn't a real word. Keep that in mind when using it. (Also it seems like Wordle has a much smaller dictionary and priorities words that are more common than otherwise, so also keep that in mind when playing). 
+This is a program made by Logan Maupin aka Voltaic (on github & socials). I'm a computer science student at the University of Arizona Online. My goal with this project is to make word games like Lingo and Wordle a bit easier by suggesting all possible words the target word may be. 
+
+Some sources of error in this code: 
+This code uses a dictionary text file that I acquired through a different github repository -- link here ---> https://github.com/dwyl/english-words/ <---- and it's dictionary may not perfectly match up with dictionaries used in other online word games / apps like Wordle, Lingo, 5 letter hangman games, and so on. So there may be  rare but possible instances where the target word you are meant to find may not even appear in the program's suggestions or alternatively the program might suggest a word that the other game / app might say isn't a real word. Keep that in mind when using it. (Also it seems like Wordle has a much smaller dictionary and priorities words that are more common than otherwise, so also keep that in mind when playing). 
 
 ##################################################################
 
