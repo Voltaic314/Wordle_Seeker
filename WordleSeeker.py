@@ -9,6 +9,7 @@ with open('words_alpha_5only.txt') as f:
     stripped_lines = [s.strip() for s in lines] # stripped lines represents all words minus the \n line break
 # if you print(stripped_lines) you will print all 5 letter words without any filteration... and yes if you are wondering the master list contains 15,920 words. 
 
+f.close()
 
 #create loop to hold everything. Break loop if all bottom conditions are a success. 
 running = True
