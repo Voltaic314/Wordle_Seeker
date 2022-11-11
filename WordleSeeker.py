@@ -12,33 +12,57 @@ in the word, the game will tell you if any of the letters in the word you guesse
 as the target word.
 
 How this script works:
-When you run this script, it will ask you if you know any of the letters in the word, and any letters
-that you know are NOT in the word. From there, if you do know any letters in the word, we need to know
-how many letters' positions that you know and what those letters are in those positions.
+When you run this script, it will ask if you know any letters positions in the target word. If so, we need to know
+what letters and where at. If not, then we need to know if you know any letters in the word and any letters not in the
+word.
+
+If you do know any letters positions, as you type them, the script will filter words out of the original list if they
+don't contain that letter at that position.
+
+if you know any good letters (letters we know are in the target word), then the script will check to make sure that ALL
+of your good letters are in each word or else it will remove them from the list.
+
+if you know any bad letters, (letters we know that aren't in the word), then the script will check to make sure that ANY
+of the bad letters are not in any words in the list or else it will remove them from the list.
+
+Finally, it will print the results to you as well as how many results are in your query.
+
+#######################################################################################################################
 
 From my own statistical info gathering, Arise and Until are the best starting words because they use
-the top 9 most used letters in the alphabet for 5 letter words.
-
+the top 9 most used letters in the alphabet for five-letter words.
 """
 
-from typing import Iterable
 
+def read_txt_file(word_list_file_name):
+    """
+    This function basically just creates the word list. Even though the word list never really changes, I do want to
+    keep reading it from the text file because it helps with creating testable code and also lets users modify their
+    word lists at any time if they want.
 
-def read_txt_file(word_list):
+    :param word_list_file_name: This is the txt file that contains your word list. Whatever it is, just make sure it's
+    in the same directory as this script and contains five-letter words. PREFERABLY ONLY FIVE-LETTER-WORDS.
+    If you need help, you can download the word list I supply in the GitHub repo, that's the ideal file here.
+    :returns: word list without the "\n" at the end of their words.
+    """
+
 # open and read the dictionary txt file
-    open(word_list, 'r')
-    with open(word_list) as f:
+    with open(word_list_file_name) as f:
         lines = f.readlines()
+
+        # this s.strip() part here is what removes the "\n" new line character after each word.
         return [s.strip() for s in lines]
 
 
-# def find_word_for(collection: list[str], char: str, index: int) -> Iterable[str]:
-#     for word in collection:
-#         if len(word)>=index-1 and word[index]==char:
-#             yield word
-
-
 def create_good_letter_dictionary(original_list: list[str]):
+    """
+    This function asks the user for input on what letters they know, then builds a dictionary to map those letters.
+    then it traverses the word list to remove any words that don't contain those letters at those positions.
+
+    :param original_list: list of words to search through, like ['ghost', 'flame']
+    :returns: modified copy of the original list, and the good letters dictionary we created to use elsewhere.
+    """
+
     good_letters_dict = {}
 
     original_list_copy = original_list.copy()
@@ -93,6 +117,7 @@ def create_good_and_bad_letter_lists(good_letter_dict):
     The goal of this function is to capture user input so that we know what letters the user knows are
     in the word and not in the word.
 
+    :param good_letter_dict: This is the dictionary of good letter positions
     :returns: Good and bad letter list words.
     """
 
@@ -126,6 +151,16 @@ def create_good_and_bad_letter_lists(good_letter_dict):
 
 
 def filter_words_by_letters_non_positional(original_list, good_letters, bad_letters):
+    """
+    This function removes words from the original list if they contain bad letters or don't contain all the good ones.
+
+    :param original_list: it's the list of words we're going to search through. like ['ghost', 'flame']
+    :param good_letters: list of good letters to compare against like if the word is ghost, and you know g and h, it
+    would be ['g', 'h']
+    :param bad_letters: list of bad letters to compare against. like if you know p and j aren't in the word, it would
+    be like ['p', 'j']
+    :returns: modified copy of the original word list
+    """
 
     original_list_copy = original_list.copy()
 
@@ -141,8 +176,15 @@ def filter_words_by_letters_non_positional(original_list, good_letters, bad_lett
 
 
 def format_list_response(filtered_list):
+    """
+    This function takes our final output list and prints the results of our output in an ideal format that is
+    human-readable.
+    :param filtered_list: the final copy of the original word list, like ['ghost', 'ghoul'] (assuming you only know that
+    "gho" is the first 3 letters, and no other bad letters or good letters in the word are known.
+    :returns: None
+    """
 
-    # print the output of all words matching the str texts from the previous if (success) function
+    # print each word in the final list one by one on its own line.
     for word in filtered_list:
         print(word)
 
@@ -155,16 +197,20 @@ def format_list_response(filtered_list):
 
 
 def main():
+    """
+    This function defines the order to run all the other functions in this script.
+    If you want to know how this works, please read the top part of this script that explains the process of what the
+    code is doing.
+
+    :returns: None
+    """
     original_list = read_txt_file('words_alpha_5only.txt')
-    # original_list = ['adept', 'adios', 'flame', 'fired', 'bears', 'ghost', 'goths', 'agate']
 
     original_list, good_letter_dict = create_good_letter_dictionary(original_list)
 
     good_list, bad_list = create_good_and_bad_letter_lists(good_letter_dict)
 
     original_list = filter_words_by_letters_non_positional(original_list, good_list, bad_list)
-
-    print("--------------------------------------------------------")
 
     format_list_response(original_list)
 
