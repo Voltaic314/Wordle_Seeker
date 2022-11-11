@@ -47,14 +47,14 @@ def read_txt_file(word_list_file_name):
     """
 
 # open and read the dictionary txt file
-    with open(word_list_file_name) as f:
-        lines = f.readlines()
+    with open(word_list_file_name) as text_file:
+        lines = text_file.readlines()
 
         # this s.strip() part here is what removes the "\n" new line character after each word.
-        return [s.strip() for s in lines]
+        return [line.strip() for line in lines]
 
 
-def create_good_letter_dictionary(original_list: list[str]):
+def filter_by_letters_positional(original_list: list[str]):
     """
     This function asks the user for input on what letters they know, then builds a dictionary to map those letters.
     then it traverses the word list to remove any words that don't contain those letters at those positions.
@@ -204,9 +204,10 @@ def main():
 
     :returns: None
     """
+
     original_list = read_txt_file('words_alpha_5only.txt')
 
-    original_list, good_letter_dict = create_good_letter_dictionary(original_list)
+    original_list, good_letter_dict = filter_by_letters_positional(original_list)
 
     good_list, bad_list = create_good_and_bad_letter_lists(good_letter_dict)
 
