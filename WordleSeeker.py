@@ -41,7 +41,7 @@ def read_txt_file(word_list):
 def create_good_letter_dictionary(original_list: list[str]):
     good_letters_dict = {}
 
-    original_list_copy= original_list.copy()
+    original_list_copy = original_list.copy()
 
     running = True
     while running:
@@ -66,9 +66,11 @@ def create_good_letter_dictionary(original_list: list[str]):
 
                         good_letters_dict[what_letter] = that_letters_index
 
-                        for i in range(len(original_list)):
-                            if original_list[i][that_letters_index] != what_letter:
-                                original_list_copy.remove(original_list[i])
+                        for word in original_list:
+                            current_character = word[that_letters_index]
+                            if current_character != what_letter:
+                                if word in original_list_copy:
+                                    original_list_copy.remove(word)
 
                     running = False
 
@@ -138,32 +140,6 @@ def filter_words_by_letters_non_positional(original_list, good_letters, bad_lett
     return original_list_copy
 
 
-def filter_words_by_letters_positional(original_list, good_letter_dict):
-
-    original_list_copy= original_list.copy()
-
-    running = True
-    while running:
-
-        if good_letter_dict:
-
-            for key in good_letter_dict:
-
-                for word in original_list:
-
-                    if key != word[good_letter_dict[key]]:
-
-                        original_list_copy.remove(word)
-
-            running = False
-
-        else:
-
-            running = False
-
-    return original_list_copy
-
-
 def format_list_response(filtered_list):
 
     # print the output of all words matching the str texts from the previous if (success) function
@@ -179,21 +155,18 @@ def format_list_response(filtered_list):
 
 
 def main():
-    # original_list = read_txt_file('words_alpha_5only.txt')
-    original_list = ['adept', 'adios', 'flame', 'fired', 'bears', 'ghost', 'agate']
-
-    print(len(original_list))
+    original_list = read_txt_file('words_alpha_5only.txt')
+    # original_list = ['adept', 'adios', 'flame', 'fired', 'bears', 'ghost', 'goths', 'agate']
 
     original_list, good_letter_dict = create_good_letter_dictionary(original_list)
-    print(len(original_list))
+
     good_list, bad_list = create_good_and_bad_letter_lists(good_letter_dict)
+
     original_list = filter_words_by_letters_non_positional(original_list, good_list, bad_list)
 
-    print(len(original_list))
-
     print("--------------------------------------------------------")
-    final_list = filter_words_by_letters_positional(original_list, good_letter_dict)
-    format_list_response(final_list)
+
+    format_list_response(original_list)
 
 
 if __name__ == "__main__":
