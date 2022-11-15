@@ -73,15 +73,15 @@ def filter_by_letters_positional(original_list: list[str]):
 
         if letter_position_question == "Y":
 
-            we_know_this_many_letters = input("How many letter positions do you know?")
+            amount_of_letters_known = input("How many letter positions do you know?")
 
-            if we_know_this_many_letters.isdigit():
+            if amount_of_letters_known.isdigit():
 
-                we_know_this_many_letters = int(we_know_this_many_letters)
+                amount_of_letters_known = int(amount_of_letters_known)
 
-                if 1 < we_know_this_many_letters < 5:
+                if 1 < amount_of_letters_known < 5:
 
-                    for i in range(we_know_this_many_letters):
+                    for i in range(amount_of_letters_known):
 
                         what_letter = str(input("What letter do you know the position of?")).lower()
 
