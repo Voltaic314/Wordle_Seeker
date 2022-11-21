@@ -79,7 +79,7 @@ def filter_by_letters_positional(original_list: list[str]):
 
                 amount_of_letters_known = int(amount_of_letters_known)
 
-                if 1 < amount_of_letters_known < 5:
+                if 0 < amount_of_letters_known < 5:
 
                     for i in range(amount_of_letters_known):
 
