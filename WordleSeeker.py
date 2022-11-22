@@ -63,8 +63,7 @@ def create_good_letters_dict():
 
     good_letters_dict = {}
 
-    running = True
-    while running:
+    while True:
         letter_position_question = str(input("Do you know where any of the good letters' positions are? Y/N: ")).upper()
 
         if letter_position_question == "Y":
@@ -86,7 +85,7 @@ def create_good_letters_dict():
 
                         good_letters_dict[what_letter] = that_letters_index
 
-                    running = False
+                    break
 
             else:
                 print("Please enter the number of how many letter positions you know.")
@@ -135,7 +134,6 @@ def create_good_and_bad_letter_lists(good_letter_dict):
 
         good_list_user_input = [str(x).lower() for x in input(
             'Enter any other letters you know that are in the word \n'
-            'DO NOT ENTER ANY LETTERS IN THE WORD THAT YOU ALREADY LISTED ABOVE. \n'
             '(separate letters with a comma and space): \n').split(', ')]
 
         for letter in good_list_user_input:
@@ -145,8 +143,11 @@ def create_good_and_bad_letter_lists(good_letter_dict):
 
         if len(good_list) <= 5:
 
-            bad_list = [str(letters).lower() for letters in input(
-                'Enter any letters that you know are NOT in the word - (separate letters with a comma and space, also if you don\'t know any bad letters just hit space and then enter):  \n').split(', ')]
+            bad_list = [letters.lower() for letters in input(
+                'Enter any letters that you know are NOT in the word - (separate letters with a comma and space): \n').split(', ')]
+
+            if not bad_list:
+                bad_list = []
 
         else:
             print("You have entered more than 5 letters. Please enter each letter with a comma after it. "
