@@ -54,18 +54,14 @@ def read_txt_file(word_list_file_name):
         return [line.strip() for line in lines]
 
 
-def filter_by_letters_positional(original_list: list[str]):
+def create_good_letters_dict():
     """
-    This function asks the user for input on what letters they know, then builds a dictionary to map those letters.
-    then it traverses the word list to remove any words that don't contain those letters at those positions.
+    This function asks for the user's input to build a dictionary of letters we know and their positions in the word.
 
-    :param original_list: list of words to search through, like ['ghost', 'flame']
-    :returns: modified copy of the original list, and the good letters dictionary we created to use elsewhere.
+    :returns: dictionary of good letters and their positions
     """
 
     good_letters_dict = {}
-
-    original_list_copy = original_list.copy()
 
     running = True
     while running:
@@ -90,12 +86,6 @@ def filter_by_letters_positional(original_list: list[str]):
 
                         good_letters_dict[what_letter] = that_letters_index
 
-                        for word in original_list:
-                            current_character = word[that_letters_index]
-                            if current_character != what_letter:
-                                if word in original_list_copy:
-                                    original_list_copy.remove(word)
-
                     running = False
 
             else:
@@ -109,7 +99,22 @@ def filter_by_letters_positional(original_list: list[str]):
             print("I didn't quite catch that. Do you know where any letter positions are?")
             continue
 
-    return original_list_copy, good_letters_dict
+    return good_letters_dict
+
+
+def filter_by_letters_positional(original_list: list[str], dictionary_of_good_letters: dict):
+
+    original_list_copy = original_list.copy()
+
+    for word in original_list:
+        for key, value in dictionary_of_good_letters.items():
+
+            current_character = word[value]
+            if current_character != key:
+                if word in original_list_copy:
+                    original_list_copy.remove(word)
+
+    return original_list_copy
 
 
 def create_good_and_bad_letter_lists(good_letter_dict):
@@ -207,7 +212,9 @@ def main():
 
     original_list = read_txt_file('words_alpha_5only.txt')
 
-    original_list, good_letter_dict = filter_by_letters_positional(original_list)
+    good_letter_dict = create_good_letters_dict()
+
+    original_list = filter_by_letters_positional(original_list, good_letter_dict)
 
     good_list, bad_list = create_good_and_bad_letter_lists(good_letter_dict)
 
