@@ -126,17 +126,22 @@ def create_good_and_bad_letter_lists(good_letter_dict):
     :returns: Good and bad letter list words.
     """
 
+    good_list = []
+
+    for key in good_letter_dict.keys():
+        good_list.append(str(key))
+
     while True:
 
-        good_list = [str(x).lower() for x in input(
+        good_list_user_input = [str(x).lower() for x in input(
             'Enter any other letters you know that are in the word \n'
             'DO NOT ENTER ANY LETTERS IN THE WORD THAT YOU ALREADY LISTED ABOVE. \n'
             '(separate letters with a comma and space): \n').split(', ')]
 
-        for letter in good_list:
+        for letter in good_list_user_input:
 
-            if letter in good_letter_dict:
-                good_list.remove(letter)
+            if letter not in good_letter_dict.keys():
+                good_list.append(letter)
 
         if len(good_list) <= 5:
 
@@ -148,9 +153,6 @@ def create_good_and_bad_letter_lists(good_letter_dict):
                   "For example 'G, H, O, S, T' (Note it is not case sensitive). ")
 
             continue
-
-        for letter in good_letter_dict:
-            good_list.append(letter)
 
         return good_list, bad_list
 
