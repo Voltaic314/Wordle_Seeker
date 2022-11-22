@@ -19,7 +19,7 @@ as the target word.
 
 HOW TO USE THIS CODE: 
 
-First make sure your device has some way to run python. I would recommend watching a tutorial on run a python script. This varies based on operating system so best just to look up a tutorial of how to run python on your OS, it's pretty easy to do all things considered. Once python is installed just execute the program in your command line and it should start up. 
+First make sure your device has some way to run python. I would recommend watching a tutorial on how to run a python script. This varies based on operating system so best just to look up a tutorial of how to run python on your OS, it's pretty easy to do all things considered. Once python is installed just execute the program in your command line and it should start up. 
 
 You will also need the dictionary word list txt file I have provided otherwise the code will not work. So just download that dictionary txt file and put it in the same directory as the python script.
 
@@ -30,12 +30,16 @@ HOW THIS SCRIPT WORKS:
 When you run this script, it will ask if you know any letters positions in the target word. If so, we need to know
 what letters and where at. If not, then we need to know if you know any letters in the word and any letters not in the
 word.
+
 If you do know any letters positions, as you type them, the script will filter words out of the original list if they
 don't contain that letter at that position.
-if you know any good letters (letters we know are in the target word), then the script will check to make sure that ALL
+
+if you know any letters we know are in the target word, then the script will check to make sure that ALL
 of your good letters are in each word or else it will remove them from the list.
-if you know any bad letters, (letters we know that aren't in the word), then the script will check to make sure that ANY
+
+if you know any letters we know that aren't in the word, then the script will check to make sure that ANY
 of the bad letters are not in any words in the list or else it will remove them from the list.
+
 Finally, it will print the results to you as well as how many results are in your query.
 
 #################################################################
