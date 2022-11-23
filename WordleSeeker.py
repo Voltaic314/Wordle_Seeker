@@ -68,7 +68,7 @@ def create_good_letters_dict():
 
         if letter_position_question == "Y":
 
-            amount_of_letters_known = input("How many letter positions do you know?")
+            amount_of_letters_known = input("How many letter positions do you know? ")
 
             if amount_of_letters_known.isdigit():
 
@@ -78,24 +78,24 @@ def create_good_letters_dict():
 
                     for i in range(amount_of_letters_known):
 
-                        what_letter = str(input("What letter do you know the position of?")).lower()
+                        what_letter = str(input("What letter do you know the position of? ")).lower()
 
                         that_letters_index = int(input("Where at, in the word's position, "
-                                                 "is that letter located in the word? (1-5)")) - 1
+                                                 "is that letter located in the word? (1-5) ")) - 1
 
                         good_letters_dict[what_letter] = that_letters_index
 
                     break
 
             else:
-                print("Please enter the number of how many letter positions you know.")
+                print("Please enter the number of how many letter positions you know. ")
                 continue
 
         elif letter_position_question == "N":
             break
 
         else:
-            print("I didn't quite catch that. Do you know where any letter positions are?")
+            print("I didn't quite catch that. Do you know where any letter positions are? ")
             continue
 
     return good_letters_dict
@@ -132,21 +132,28 @@ def create_good_and_bad_letter_lists(good_letter_dict):
 
     while True:
 
-        good_list_user_input = [str(x).lower() for x in input(
-            'Enter any other letters you know that are in the word \n'
-            '(separate letters with a comma and space): \n').split(', ')]
+        good_list_user_input = input('Enter any other letters you know that are in the word \n'
+                                     '(separate letters with a comma and space): \n').lower().replace(" ", "").split(',')
 
-        for letter in good_list_user_input:
+        if good_list_user_input != ['']:
 
-            if letter not in good_letter_dict.keys():
-                good_list.append(letter)
+            for letter in good_list_user_input:
+
+                # This will allow users to input numbers or whatever they want, but it won't be added to the list.
+                if letter.isalpha():
+
+                    # this not only controls for duplicates from the dict and the list, but also if the user inputs the
+                    # same letter twice. like if their input is "a, a, a" it will only enter 1 'a' to the list. :)
+                    if letter not in good_letter_dict.keys():
+                        good_list.append(letter)
 
         if len(good_list) <= 5:
 
-            bad_list = [letters.lower() for letters in input(
-                'Enter any letters that you know are NOT in the word - (separate letters with a comma and space): \n').split(', ')]
+            bad_list = input('Enter any letters that you know are NOT in the word - '
+                             '(separate letters with a comma and space): \n').lower().replace(" ", "").split(',')
 
-            if not bad_list:
+            # if the user inputs an empty string, then just make it an empty list which evaluates to False.
+            if bad_list == ['']:
                 bad_list = []
 
         else:
@@ -172,13 +179,22 @@ def filter_words_by_letters_non_positional(original_list, good_letters, bad_lett
 
     original_list_copy = original_list.copy()
 
+    # original_list = ["truth", "power", "fired"]
+    #
+    # original_list_copy = original_list.copy()
+
     for word in original_list:
 
-        if not all(letters in word for letters in good_letters):
-            original_list_copy.remove(word)
+        if good_letters:
 
-        elif any(letters in word for letters in bad_letters):  # compare good list to master list and compare bad list to master list.
-            original_list_copy.remove(word)
+            if not all(letters in word for letters in good_letters):
+                original_list_copy.remove(word)
+
+        if bad_letters:
+
+            if any(letters in word for letters in bad_letters):
+                if word in original_list_copy:
+                    original_list_copy.remove(word)
 
     return original_list_copy
 
@@ -213,7 +229,7 @@ def main():
     :returns: None
     """
 
-    original_list = read_txt_file('words_alpha_5only.txt')
+    original_list = read_txt_file('word_list_test.txt')
 
     good_letter_dict = create_good_letters_dict()
 
@@ -221,7 +237,9 @@ def main():
 
     good_list, bad_list = create_good_and_bad_letter_lists(good_letter_dict)
 
-    original_list = filter_words_by_letters_non_positional(original_list, good_list, bad_list)
+    if good_list or bad_list:
+
+        original_list = filter_words_by_letters_non_positional(original_list, good_list, bad_list)
 
     format_list_response(original_list)
 

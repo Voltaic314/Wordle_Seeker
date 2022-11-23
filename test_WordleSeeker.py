@@ -17,7 +17,8 @@ from WordleSeeker import *
 class TestWordleSeeker(unittest.TestCase):
 
     def test_read_txt_file(self):
-        self.assertEqual(read_txt_file("word_list_test.txt"), ["this", "is", "a", "test"])
+        self.assertEqual(read_txt_file("word_list_test.txt"), ["ghost", "fired", "house", "power", "sound",
+                                                               "heard", "truth", "beard", "rocks"])
         self.assertIsNotNone(read_txt_file("word_list_test.txt"))
 
     def test_create_good_letters_dict(self):
@@ -51,15 +52,18 @@ class TestWordleSeeker(unittest.TestCase):
         example_word_list_to_use = ["ghost", "shave", "think", "power"]
         good_letters = ["a", "e"]
         bad_letters = ["t"]
-        self.assertEqual(filter_words_by_letters_non_positional(example_word_list_to_use, good_letters, bad_letters), ["shave"])
+        self.assertEqual(filter_words_by_letters_non_positional(example_word_list_to_use, good_letters, bad_letters),
+                         ["shave"])
 
         good_letters = ["h", "t"]
         bad_letters = []
-        self.assertEqual(filter_words_by_letters_non_positional(example_word_list_to_use, good_letters, bad_letters), ["ghost", "think"])
+        self.assertEqual(filter_words_by_letters_non_positional(example_word_list_to_use, good_letters, bad_letters),
+                         ["ghost", "think"])
 
-        good_letters = []
-        bad_letters = []
-        self.assertEqual(filter_words_by_letters_non_positional(example_word_list_to_use, good_letters, bad_letters), example_word_list_to_use)
+        good_letters = ['']
+        bad_letters = ['a', 'e']
+        self.assertEqual(filter_words_by_letters_non_positional(example_word_list_to_use, good_letters, bad_letters),
+                         ['ghost', 'think'])
 
     def test_format_list_response(self):
 
