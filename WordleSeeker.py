@@ -179,10 +179,6 @@ def filter_words_by_letters_non_positional(original_list, good_letters, bad_lett
 
     original_list_copy = original_list.copy()
 
-    # original_list = ["truth", "power", "fired"]
-    #
-    # original_list_copy = original_list.copy()
-
     for word in original_list:
 
         if good_letters:
@@ -229,7 +225,7 @@ def main():
     :returns: None
     """
 
-    original_list = read_txt_file('word_list_test.txt')
+    original_list = read_txt_file('words_alpha_5only.txt')
 
     good_letter_dict = create_good_letters_dict()
 
