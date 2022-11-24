@@ -43,7 +43,7 @@ Finally, it will print the results to you as well as how many results are in you
 
 -------------------------------
 
-From my own statistical info gathering, Arise and Until are the best starting words because they use
+From my own statistical info gathering, Soare and Until are the best starting words because they use
 the top 9 most used letters in the alphabet for five-letter words.
 
 ------------------------------
