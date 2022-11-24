@@ -227,6 +227,8 @@ def main():
 
     original_list = read_txt_file('words_alpha_5only.txt')
 
+    original_list = sorted(original_list)
+
     good_letter_dict = create_good_letters_dict()
 
     original_list = filter_by_letters_positional(original_list, good_letter_dict)
