@@ -6,7 +6,7 @@ This is a program made by Logan Maupin aka Voltaic (on github & socials). I'm a 
 
 UPDATE: This code now uses the word list sourced from wordle's code. But I still have the original word list as well for safe-keeping as a backup file on here. 
 
-###############################################################
+---------------------------
 
 ABOUT THE GAME:
 Wordle is a 5 letter game in which the goal is to guess five-letter words until you guess the right
@@ -14,7 +14,7 @@ word. But the game will tell you if some letters are in the word in general, or 
 in the word, the game will tell you if any of the letters in the word you guessed are in the same place
 as the target word.
 
-##################################################################
+----------------------------
 
 HOW TO USE THIS CODE: 
 
@@ -22,7 +22,7 @@ First make sure your device has some way to run python. I would recommend watchi
 
 You will also need the dictionary word list txt file I have provided otherwise the code will not work. So just download that dictionary txt file and put it in the same directory as the python script.
 
-###############################################################
+---------------------------
 
 HOW THIS SCRIPT WORKS: 
 
@@ -41,12 +41,12 @@ of the bad letters are not in any words in the list or else it will remove them 
 
 Finally, it will print the results to you as well as how many results are in your query.
 
-#################################################################
+-------------------------------
 
 From my own statistical info gathering, Arise and Until are the best starting words because they use
 the top 9 most used letters in the alphabet for five-letter words.
 
-##################################################################
+------------------------------
 
 If you can think of any ways to improve this code, feel free to modify it or reach out to me with suggestions. I am only a beginner programmer right now so any suggestions are appreciated. Thanks and have fun! 
 
