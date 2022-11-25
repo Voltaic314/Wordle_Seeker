@@ -1,4 +1,4 @@
-# Wordle-Seeker-by-Voltaic
+# Wordle_Seeker
 Projects made by Logan Maupin aka Voltaic
 
 
