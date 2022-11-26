@@ -68,14 +68,16 @@ class TestWordleSeeker(unittest.TestCase):
     def test_format_list_response(self):
 
         example_word_list_to_use = ["ghost", "shave", "power"]
-        expected_output = "ghost\nshave\npower\nThis search has resulted in 3 matches to your query.\n"
+        expected_output = f"\n{''.center(33, '-')}\nYour matching search results are: \n{''.center(33, '-')}\n" \
+                          f"\nghost\nshave\npower\nThis search has resulted in 3 matches to your query.\n"
 
         with io.StringIO() as fake_out, redirect_stdout(fake_out):
             WordleSeeker.format_list_response(example_word_list_to_use)
             self.assertEqual(fake_out.getvalue(), expected_output)
 
         example_word_list_to_use = ["ghost"]
-        expected_output = "ghost\nThis search has resulted in 1 match to your query.\n"
+        expected_output = f"\n{''.center(33, '-')}\nYour matching search results are: \n{''.center(33, '-')}\n" \
+                          f"\nghost\nThis search has resulted in 1 match to your query.\n"
 
         with io.StringIO() as fake_out, redirect_stdout(fake_out):
             WordleSeeker.format_list_response(example_word_list_to_use)

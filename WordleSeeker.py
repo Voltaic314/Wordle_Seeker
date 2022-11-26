@@ -133,7 +133,7 @@ def create_good_and_bad_letter_lists(good_letter_dict):
     while True:
 
         good_list_user_input = input('Enter any other letters you know that are in the word \n'
-                                     '(separate letters with a comma and space): \n').lower().replace(" ", "").split(',')
+                                     '(separate letters with a comma): \n').lower().replace(" ", "").split(',')
 
         if good_list_user_input != ['']:
 
@@ -147,22 +147,28 @@ def create_good_and_bad_letter_lists(good_letter_dict):
                     if letter not in good_letter_dict.keys():
                         good_list.append(letter)
 
-        if len(good_list) <= 5:
+        if len(good_list) > 5:
 
-            bad_list = input('Enter any letters that you know are NOT in the word - '
-                             '(separate letters with a comma and space): \n').lower().replace(" ", "").split(',')
-
-            # if the user inputs an empty string, then just make it an empty list which evaluates to False.
-            if bad_list == ['']:
-                bad_list = []
-
-        else:
             print("You have entered more than 5 letters. Please enter each letter with a comma after it. "
                   "For example 'G, H, O, S, T' (Note it is not case sensitive). ")
 
             continue
 
-        return good_list, bad_list
+        else:
+            break
+
+    while True:
+
+        bad_list = input('Enter any letters that you know are NOT in the word - '
+                         '(separate letters with a comma and space): \n').lower().replace(" ", "").split(',')
+
+        # if the user inputs an empty string, then just make it an empty list which evaluates to False.
+        if bad_list == ['']:
+            bad_list = []
+
+        break
+
+    return good_list, bad_list
 
 
 def filter_words_by_letters_non_positional(original_list, good_letters, bad_letters):
@@ -204,6 +210,12 @@ def format_list_response(filtered_list):
     :returns: None
     """
 
+    print()
+    print("".center(33, "-"))
+    print("Your matching search results are: ")
+    print("".center(33, "-"))
+    print()
+
     # print each word in the final list one by one on its own line.
     for word in filtered_list:
         print(word)
@@ -216,18 +228,16 @@ def format_list_response(filtered_list):
         print("This search has resulted in " + str(number_of_items) + " match to your query.")
 
 
-def main():
+def filter_words_main(original_list):
     """
-    This function defines the order to run all the other functions in this script.
-    If you want to know how this works, please read the top part of this script that explains the process of what the
-    code is doing.
+    This function defines the order in which to run all the above functions. It serves as the primary function logic
+    for the entire script.
+
+    :param original_list: a word list from the text file, but also, preferably a sorted word list, already sorted
+    alphabetically.
 
     :returns: None
     """
-
-    original_list = read_txt_file('words_alpha_5only.txt')
-
-    original_list = sorted(original_list)
 
     good_letter_dict = create_good_letters_dict()
 
@@ -236,10 +246,40 @@ def main():
     good_list, bad_list = create_good_and_bad_letter_lists(good_letter_dict)
 
     if good_list or bad_list:
-
         original_list = filter_words_by_letters_non_positional(original_list, good_list, bad_list)
 
     format_list_response(original_list)
+
+
+def main():
+    """
+    This function runs the main filter words function but asks if the user wants to run it again. Otherwise, it will
+    stop after the first run through.
+
+    :returns: None
+    """
+
+    original_list = sorted(read_txt_file('words_alpha_5only.txt'))
+
+    filter_words_main(original_list)
+
+    while True:
+
+        search_again = input("\nDo you want to search again? (y/n): ").lower()
+
+        if search_again == "y":
+            filter_words_main(original_list)
+            continue
+
+        elif search_again == "n":
+            break
+
+        else:
+            print("\nI don't understand. Do you want to search again? (y/n): ")
+            continue
+
+    # fun little I, Robot reference. the proverbial "The End." lol
+    print("\nProgram terminated.")
 
 
 if __name__ == "__main__":
