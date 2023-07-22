@@ -94,18 +94,25 @@ def create_good_letters_dict() -> dict[str: int]:
 
 
 def filter_by_letters_positional(original_list: list[str], dictionary_of_good_letters: dict) -> list[str]:
+    """
+    This function takes the list of words and the dictionary of good letter objects, then filters the list of words
+    to only include the good words. This algorithm's Big O(n) notation is closer to linear since it only iterates through
+    each word in the list one time. My previous implementation kept iterating over the words again and again.
 
-    original_list_copy = original_list.copy()
+    :param original_list: list of strings that are the words it will iterate through.
+    :param dictionary_of_good_letters: dictionary object where the letters of the word are the keys and their index in
+    the word are the values.
+    :returns: list of words that only contain the right letters at the right positions in those words.
+    """
+    filtered_list = []
 
     for word in original_list:
-        for key, value in dictionary_of_good_letters.items():
+        is_valid_word = all(word[position] == letter for letter, position in dictionary_of_good_letters.items())
 
-            current_character = word[value]
-            if current_character != key:
-                if word in original_list_copy:
-                    original_list_copy.remove(word)
+        if is_valid_word:
+            filtered_list.append(word)
 
-    return original_list_copy
+    return filtered_list
 
 
 def create_good_and_bad_letter_lists(good_letter_dict: dict[str: int]) -> tuple[list[str], list[str]]:
