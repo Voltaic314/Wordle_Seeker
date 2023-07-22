@@ -5,12 +5,6 @@ Date: 11/10/2022
 This script is made for the purpose of trying to provide (possible) answer solution hints to the game
 Wordle.
 
-About the game:
-Wordle is a 5 letter game in which the goal is to guess five-letter words until you guess the right
-word. But the game will tell you if some letters are in the word in general, or if not. If they are
-in the word, the game will tell you if any of the letters in the word you guessed are in the same place
-as the target word.
-
 How this script works:
 When you run this script, it will ask if you know any letters positions in the target word. If so, we need to know
 what letters and where at. If not, then we need to know if you know any letters in the word and any letters not in the
@@ -27,14 +21,12 @@ of the bad letters are not in any words in the list or else it will remove them 
 
 Finally, it will print the results to you as well as how many results are in your query.
 
-#######################################################################################################################
-
 From my own statistical info gathering, Arise and Until are the best starting words because they use
 the top 9 most used letters in the alphabet for five-letter words.
 """
 
 
-def read_txt_file(word_list_file_name):
+def read_txt_file(word_list_file_name: str) -> list[str]:
     """
     This function basically just creates the word list. Even though the word list never really changes, I do want to
     keep reading it from the text file because it helps with creating testable code and also lets users modify their
@@ -54,7 +46,7 @@ def read_txt_file(word_list_file_name):
         return [line.strip() for line in lines]
 
 
-def create_good_letters_dict():
+def create_good_letters_dict() -> dict[str: int]:
     """
     This function asks for the user's input to build a dictionary of letters we know and their positions in the word.
 
@@ -101,7 +93,7 @@ def create_good_letters_dict():
     return good_letters_dict
 
 
-def filter_by_letters_positional(original_list: list[str], dictionary_of_good_letters: dict):
+def filter_by_letters_positional(original_list: list[str], dictionary_of_good_letters: dict) -> list[str]:
 
     original_list_copy = original_list.copy()
 
@@ -116,7 +108,7 @@ def filter_by_letters_positional(original_list: list[str], dictionary_of_good_le
     return original_list_copy
 
 
-def create_good_and_bad_letter_lists(good_letter_dict):
+def create_good_and_bad_letter_lists(good_letter_dict: dict[str: int]) -> tuple[list[str], list[str]]:
     """
     The goal of this function is to capture user input so that we know what letters the user knows are
     in the word and not in the word.
@@ -171,7 +163,7 @@ def create_good_and_bad_letter_lists(good_letter_dict):
     return good_list, bad_list
 
 
-def filter_words_by_letters_non_positional(original_list, good_letters, bad_letters):
+def filter_words_by_letters_non_positional(original_list: list[str], good_letters: list[str], bad_letters: list[str]) -> list[str]:
     """
     This function removes words from the original list if they contain bad letters or don't contain all the good ones.
 
@@ -201,7 +193,7 @@ def filter_words_by_letters_non_positional(original_list, good_letters, bad_lett
     return original_list_copy
 
 
-def format_list_response(filtered_list):
+def format_list_response(filtered_list: list[str]) -> None:
     """
     This function takes our final output list and prints the results of our output in an ideal format that is
     human-readable.
@@ -228,14 +220,13 @@ def format_list_response(filtered_list):
         print("This search has resulted in " + str(number_of_items) + " match to your query.")
 
 
-def filter_words_main(original_list):
+def filter_words_main(original_list: list[str]) -> None:
     """
     This function defines the order in which to run all the above functions. It serves as the primary function logic
     for the entire script.
 
     :param original_list: a word list from the text file, but also, preferably a sorted word list, already sorted
     alphabetically.
-
     :returns: None
     """
 
@@ -251,7 +242,7 @@ def filter_words_main(original_list):
     format_list_response(original_list)
 
 
-def main():
+def main() -> None:
     """
     This function runs the main filter words function but asks if the user wants to run it again. Otherwise, it will
     stop after the first run through.
