@@ -17,9 +17,9 @@ from WordleSeeker import *
 class TestWordleSeeker(unittest.TestCase):
 
     def test_read_txt_file(self):
-        self.assertEqual(read_txt_file("word_list_test.txt"), ["ghost", "fired", "house", "power", "sound",
+        self.assertEqual(get_word_from_txt_file("word_list_test.txt"), ["ghost", "fired", "house", "power", "sound",
                                                                "heard", "truth", "beard", "rocks"])
-        self.assertIsNotNone(read_txt_file("word_list_test.txt"))
+        self.assertIsNotNone(get_word_from_txt_file("word_list_test.txt"))
 
     def test_create_good_letters_dict(self):
         with patch('builtins.input', side_effect=['y', '2', 'g', '1', 'h', '2']):
