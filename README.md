@@ -1,7 +1,4 @@
 # Wordle_Seeker
-Projects made by Logan Maupin aka Voltaic
-
-
 This is a program made by Logan Maupin aka Voltaic (on github & socials). I'm a computer science student at the University of Arizona Online. My goal with this project is to make word games like Lingo and Wordle a bit easier by suggesting all possible words the target word may be.
 
 ---------------------------
