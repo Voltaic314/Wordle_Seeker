@@ -391,7 +391,12 @@ def filter_words_main() -> None:
 
     while user_wants_to_search_again:
 
-        original_word_list = get_word_from_txt_file('words_alpha_5only.txt')
+        # alternative word list (they are pretty close in size, 
+        # alt is bigger by 1k words or so)
+        # word_list_text_filename = 'words_alpha_5only.txt'
+        word_list_text_filename = 'official_wordle_word_list.txt'
+        
+        original_word_list = get_word_from_txt_file(word_list_text_filename)
         good_letter_dict = create_good_letters_dict()
         word_list = filter_by_letters_positional(original_word_list, good_letter_dict)
         other_letters = get_good_letters()
