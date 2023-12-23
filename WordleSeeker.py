@@ -26,6 +26,7 @@ the top 9 most used letters in the alphabet for five-letter words.
 """
 from typing import Generator
 
+
 def get_word_from_txt_file(word_list_file_name: str) -> list[str]:
     """
     This function basically just creates the word list. Even though the word list never really changes, I do want to
