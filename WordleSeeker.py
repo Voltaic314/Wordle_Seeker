@@ -332,8 +332,9 @@ def format_list_response(filtered_list: list[str]) -> None:
     """
 
     if not filtered_list:
-        print("There are no words in our word list that match this criteria. :( )")
-
+        print("There are no words in our word list that match this criteria. :(")
+        return
+    
     matching_search_string = "Your matching search results are: "
     length_of_matching_string = len(matching_search_string)
 
@@ -404,6 +405,8 @@ def filter_words_main() -> None:
         good_list = create_good_letter_list(good_letter_dict, other_letters)
         bad_list = create_bad_letter_lists()
         word_list = filter_words_by_letters_non_positional(word_list, good_list, bad_list)
+        word_list = list(set(word_list))
+        word_list.sort()
         format_list_response(word_list)
 
         # ask if they wanna search once more
